@@ -3,13 +3,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // Importing products from products.ts into index.ts
 var products_1 = require("./products");
 // Declare a variable named 'productName', annotate as string, set set its value to one of the product names in products.ts
-var productName = 'tote bag';
+var productName = 'fanny pack';
+// productName can be any of the following product names:
+// examples: 'fanny pack', 'beanie', 'tote bag', 'shirt', 'hoodie'
+// 'fanny pack' + 'New York' = free shipping, total = $33.00
+// 'tote bag' + 'Maine' = $1.00 tax, total = $26.00
 // For receipt we will need following variables:
 var shipping;
 var taxPercent;
 var taxTotal;
 var total;
-var shippingAddress = "Some address, Kyiv";
+var shippingAddress = "Some address, New York, NY 10001";
 /*
 Declare a variable named 'product'. find it by its name from our list of products.
 Use any method to find a product inside products that matches the string stored in the productName variable.
@@ -18,18 +22,21 @@ Once you have found the matching product, store that product in a variable named
 var product = products_1.default.filter(function (product) {
     return product.name === productName;
 })[0];
+if (!product) {
+    console.error('Product not found. Please check the product name spelling.');
+}
 // print the 'product' variable’s value
 console.log(product);
 /* Write a conditional that checks if the .preOrder property is true on the product,
 then log a message to the console to tell the customer that we’ll send them a message when it’s on the way */
 if (product.preOrder) {
-    console.log('we wll send it later. it is on the way.');
+    console.log('We will send you a message when your product ships.');
 }
 /* If the price of an item is over $25, we will provide free shipping.
 Write a conditional that sets shipping to 0 if the price of the product is 25 or over.
 Include a console.log() stating that we provide free shipping for this product. If the product is under $25, set the value of shipping to 5. */
-if (product.price > 25) {
-    console.log('This item will receive freeshipping');
+if (product.price >= 25) {
+    console.log('This item will receive free shipping');
     shipping = 0;
 }
 else {

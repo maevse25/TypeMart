@@ -2,14 +2,19 @@
 import products from './products';
 
 // Declare a variable named 'productName', annotate as string, set set its value to one of the product names in products.ts
-const productName: string = 'tote bag';
+const productName: string = 'fanny pack';
+// productName can be any of the following product names:
+// examples: 'fanny pack', 'beanie', 'tote bag', 'shirt', 'hoodie'
+// 'fanny pack' + 'New York' = free shipping, total = $33.00
+// 'tote bag' + 'Maine' = $1.00 tax, total = $26.00
+
 
 // For receipt we will need following variables:
 let shipping:       number;
 let taxPercent:     number;
 let taxTotal:       number;
 let total:          number;
-let shippingAddress:string = "Some address, Kyiv";
+let shippingAddress:string = "Some address, New York, NY 10001";
 
 /*
 Declare a variable named 'product'. find it by its name from our list of products. 
@@ -23,20 +28,24 @@ const product = products.filter(
   }
 )[0];
 
+if (!product) {
+  console.error('Product not found. Please check the product name spelling.');
+  }
+
 // print the 'product' variable’s value
 console.log(product);
 
 /* Write a conditional that checks if the .preOrder property is true on the product, 
 then log a message to the console to tell the customer that we’ll send them a message when it’s on the way */
 if (product.preOrder){
-  console.log('we wll send it later. it is on the way.');
+  console.log('We will send you a message when your product ships.');
 }
 
 /* If the price of an item is over $25, we will provide free shipping.
 Write a conditional that sets shipping to 0 if the price of the product is 25 or over. 
 Include a console.log() stating that we provide free shipping for this product. If the product is under $25, set the value of shipping to 5. */
-if (product.price > 25){
-  console.log('This item will receive freeshipping');
+if (product.price >= 25){
+  console.log('This item will receive free shipping');
   shipping = 0;
 } else {
   shipping = 5
